@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import ArceusImage from '../assets/img/arceus.jpg'
 
 const Home: React.FC = () => {
   let isLoading: boolean
@@ -20,13 +21,15 @@ const Home: React.FC = () => {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        
+
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
         </p>
 
         <img width="500" src="/img/arcanine.jpg" />
+
+        <img width="500" src={ArceusImage} />
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
