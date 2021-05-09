@@ -1,0 +1,41 @@
+.layer {
+  height: 100vh;
+  width: 100vw;
+  background-color: gray;
+  opacity: 0.5;
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+}
+
+.modal {
+  width: 60%;
+  min-width: 300px;
+  height: 50%;
+  min-height: 200px;
+  background-color: white;
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+}
+
+.open {
+  visibility: visible;
+}
+
+.header,
+.footer {
+  height: 50px;
+  width: 100%;
+}
+.content {
+  height: calc(100% - 100px);
+  width: 100%;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
