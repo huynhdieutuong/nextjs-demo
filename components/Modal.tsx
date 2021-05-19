@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/Modal.module.css';
 
 type ModalProps = {
   open: boolean;
-  onClose: () => void;
   header?: string;
   footer?: () => JSX.Element;
   onCancel?: () => void;
@@ -13,8 +12,7 @@ type ModalProps = {
 };
 
 const Modal: React.FC<ModalProps> = ({
-  open,
-  onClose,
+  open: isVisible,
   header,
   children,
   footer,
@@ -23,7 +21,12 @@ const Modal: React.FC<ModalProps> = ({
   buttonCancelText,
   buttonOkText,
 }) => {
+  const [open, setOpen] = useState(false)
   const classNameOpen = open ? styles.open : '';
+
+  useEffect(() => {
+    setOpen(isVisible)
+  }, [isVisible])
 
   useEffect(() => {
     if (open) {
@@ -37,7 +40,7 @@ const Modal: React.FC<ModalProps> = ({
     const handler = (e) => {
       console.log(e);
       if (e.code === 'Escape') {
-        onClose();
+        _onCancel();
       }
     };
 
@@ -57,17 +60,26 @@ const Modal: React.FC<ModalProps> = ({
 
     return (
       <>
-        <button onClick={onCancel}>{buttonCancelText}</button>
+        <button onClick={_onCancel}>{buttonCancelText}</button>
         <button onClick={onOk}>{buttonOkText}</button>
       </>
     );
   };
 
+  const _onCancel = (): void => {
+    if (onCancel) {
+      onCancel()
+    } else {
+      // Default onCancel
+      setOpen(false)  
+    }
+  }
+
   return (
     <>
       <div
         className={`${styles.layer} ${classNameOpen}`}
-        onClick={onClose}
+        onClick={_onCancel}
       ></div>
       <div className={`${styles.modal} ${classNameOpen}`}>
         <div className={styles.header}>{header ? header : 'Header'}</div>

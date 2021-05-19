@@ -45,11 +45,6 @@ const Home: React.FC = () => {
     setNumber(number + 1)
     console.log('handleIncreaseNumber')
   }, [number])
-
-  const handleCloseModal = () => {
-    setOpen(false)
-  }
-
   const handleCancelModal = () => {
     setOpen(false)
   }
@@ -57,16 +52,14 @@ const Home: React.FC = () => {
   const handleOkModal = () => {
     setOpen(false)
   }
-
   return (
     <div className={styles.container}>
       <button onClick={handleIncreaseNumber}>Increase Number</button>
       <div>{number}</div>
       {open && <Modal
         open={open}
-        onClose={handleCloseModal}
-        onCancel={handleCancelModal}
-        onOk={handleOkModal}
+        // onCancel={handleCancelModal}
+        // onOk={handleOkModal}
         buttonOkText='Save'
       >
         <button>Ok</button>
