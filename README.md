@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Server Side Rendering
 
-## Getting Started
+## 1. getInitialProps
 
-First, run the development server:
+- Run both on server and client:
+  - Run on server when the first time load page
+  - The second time (switch page) run on client (SPA)
+- Not hide endpoint API
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## 2. getServerSideProps
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Run only on server
+- Hide endpoint API for secure
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### => getInitialProps is faster than getServerSideProps, because getInitialProps still have client rendering, but it is less secure.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+<br/>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# Static Generation
 
-## Learn More
+## 3. getStaticProps
 
-To learn more about Next.js, take a look at the following resources:
+- Run only on server
+- On Dev env, it is the same getServerSideProps (call API whenever load page)
+- On Product env, it only call API one time when build code, then data is static
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### => So it is very fast, but the data is not updated except rebuild code.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 4. getStaticPaths
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Run only on server
+- Use with getStaticProps for dynamic routes
