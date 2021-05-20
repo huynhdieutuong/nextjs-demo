@@ -2,7 +2,7 @@
 import React from 'react'
 import { withRouter } from 'next/router'
 
-const EditPosts: React.FC = ({ router }) => {
+const EditPosts: React.FC = ({ router }: any) => {
   return (
     <h1>
       Admin - Posts Page - ID: {router.query.id} - Edit
